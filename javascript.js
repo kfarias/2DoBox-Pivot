@@ -12,6 +12,7 @@ IdeaBox.prototype.createIdeaBox = function(){
        <p class="quality">`+this.quality+`</p>
        <button class="up-vote">Up Vote</button>
        <button class="down-vote">Down Vote</button>
+       <button class="delete-btn">Delete</button>
      </section>
     `
   )
@@ -30,6 +31,10 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var quality = $(this).closest(".idea-card").find(".quality");
   var newQuality = getNewQuality(selector, quality.text());
   quality.text(newQuality);
+})
+
+$(".idea-container").on("click", ".delete-btn", function(){
+  $(this).closest(".idea-card").remove();
 })
 
 function getNewQuality(selector, quality){
