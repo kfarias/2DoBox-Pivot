@@ -7,8 +7,8 @@ function IdeaBox(title, idea){
 IdeaBox.prototype.createIdeaBox = function(){
   $(".idea-container").prepend(
     `<section class="idea-card">
-       <h2>`+this.title+`</h2>
-       <p>`+this.idea+`</p>
+       <p class="idea-title" contenteditable>`+this.title+`</p>
+       <p class="idea-body" contenteditable>`+this.idea+`</p>
        <button class="up-vote"><img src="images/upvote.svg"></button>
        <button class="down-vote"><img src="images/downvote.svg"></button>
        <article>
@@ -47,32 +47,32 @@ $(".idea-container").on("click", ".delete-btn", function(){
 
 
 <!--//Button mouseover image swap-->
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/upvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/upvote.svg");
-  }
-}, ".up-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/downvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/downvote.svg");
-  }
-}, ".down-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/delete-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/delete.svg");
-  }
-}, ".delete-btn")
+// $(".idea-container").on({
+//   mouseenter:  function(){
+//     $(this).find("img").prop("src", "images/upvote-hover.svg");
+//   },
+//   mouseleave: function(){
+//     $(this).find("img").prop("src", "images/upvote.svg");
+//   }
+// }, ".up-vote")
+//
+// $(".idea-container").on({
+//   mouseenter:  function(){
+//     $(this).find("img").prop("src", "images/downvote-hover.svg");
+//   },
+//   mouseleave: function(){
+//     $(this).find("img").prop("src", "images/downvote.svg");
+//   }
+// }, ".down-vote")
+//
+// $(".idea-container").on({
+//   mouseenter:  function(){
+//     $(this).find("img").prop("src", "images/delete-hover.svg");
+//   },
+//   mouseleave: function(){
+//     $(this).find("img").prop("src", "images/delete.svg");
+//   }
+// }, ".delete-btn")
 
 
 function emptyInput() {
