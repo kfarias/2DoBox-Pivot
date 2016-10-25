@@ -25,6 +25,10 @@ p {
   padding-bottom: 8px;
 }
 
+article {
+  margin: 0 65px;
+}
+
 input {
   display: block;
   outline: none;
@@ -84,10 +88,31 @@ input:focus {
 .quality, h3 {
   display: inline-block;
   font-size: 12px;
+  margin: 0 1px;
+}
+
+.up-vote, .down-vote, .delete-btn {
+  border: none;
+  outline: none;
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.up-vote {
+  bottom: 5px;
+  left: -10px;
+}
+
+.down-vote {
+  bottom: 5px;
+  left: 25px;
 }
 
 .delete-btn {
-  position: absolute;
   top: 0;
   right: 0;
 }
