@@ -12,23 +12,6 @@ span {
   color: #00A79D;
 }
 
-h2, .quality {
-  font-family: "Roboto Slab", sans-serif;
-  font-size: 32px;
-  color: #6D6E71;
-}
-
-h2 {
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 24px;
-  line-height: 125%;
-  color: #939598;
-  margin-bottom: 30px;
-}
-
 article {
   margin: 0 100px;
 }
@@ -50,6 +33,10 @@ input, textarea {
 
 input:focus {
   border: 2px solid #00A79D;
+}
+
+h3 {
+  font-family: "Roboto Slab", sans-serif;
 }
 
 .input-fields {
@@ -100,12 +87,29 @@ input:focus {
   margin-bottom: 20px;
 }
 
-h3 {
-  font-family: "Roboto Slab", sans-serif;
-}
-
 .quality {
   font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+}
+
+
+.idea-title, .quality {
+  font-family: "Roboto Slab", sans-serif;
+  color: #6D6E71;
+}
+
+.idea-title {
+  outline: none;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.idea-body {
+  outline: none;
+  font-size: 24px;
+  line-height: 125%;
+  color: #939598;
+  margin-bottom: 30px;
 }
 
 .up-vote, .down-vote, .delete-btn {
