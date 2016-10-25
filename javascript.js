@@ -7,8 +7,8 @@ function IdeaBox(title, idea){
 IdeaBox.prototype.createIdeaBox = function(){
   $(".idea-container").prepend(
     `<section class="idea-card">
-       <h2>`+this.title+`</h2>
-       <p>`+this.idea+`</p>
+       <p class="idea-title" contenteditable>`+this.title+`</p>
+       <p class="idea-body" contenteditable>`+this.idea+`</p>
        <button class="up-vote"><img src="images/upvote.svg"></button>
        <button class="down-vote"><img src="images/downvote.svg"></button>
        <article>

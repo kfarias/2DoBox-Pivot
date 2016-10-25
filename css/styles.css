@@ -12,17 +12,19 @@ span {
   color: #00A79D;
 }
 
-h2, .quality {
+.idea-title, .quality {
   font-family: "Roboto Slab", sans-serif;
   font-size: 32px;
   color: #6D6E71;
 }
 
-h2 {
+.idea-title {
+  outline: none;
   margin-bottom: 20px;
 }
 
-p {
+.idea-body {
+  outline: none;
   font-size: 24px;
   line-height: 125%;
   color: #939598;
