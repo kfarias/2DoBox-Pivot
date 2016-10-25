@@ -1,7 +1,7 @@
 header {
   background-color: #E5F3F2;
-  padding-top: 25px;
-  padding-bottom: 15px;
+  padding-top: 35px;
+  padding-bottom: 20px;
   text-align: center;
   font-family: "Roboto Slab", sans-serif;
   font-size: 64px;
@@ -14,30 +14,35 @@ span {
 
 h2, .quality {
   font-family: "Roboto Slab", sans-serif;
-  font-size: 20px;
+  font-size: 32px;
   color: #6D6E71;
-  padding-bottom: 8px;
+}
+
+h2 {
+  margin-bottom: 20px;
 }
 
 p {
-  font-size: 16px;
+  font-size: 24px;
+  line-height: 125%;
   color: #939598;
-  padding-bottom: 8px;
+  margin-bottom: 30px;
 }
 
 article {
-  margin: 0 65px;
+  margin: 0 100px;
 }
 
 input {
   display: block;
   outline: none;
   border: 2px solid lightgray;
-  margin: 10px auto;
-  padding: 0 5px;
-  width: 50%;
-  height: 30px;
-  font-size: 18px;
+  margin: 20px auto;
+  padding: 0 10px;
+  width: 53%;
+  height: 42px;
+  font-size: 26px;
+  font-weight: 700;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -54,13 +59,14 @@ input:focus {
 
 .submit-btn{
   border: none;
-  width: 51%;
-  height: 30px;;
-  margin: 2px auto;
+  width: 55%;
+  height: 45px;
+  margin: 0 auto;
+  margin-bottom: 20px;
   background-color: #00A79D;
   color: #FFFFFF;
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .submit-btn:hover, .submit-btn:focus{
@@ -77,8 +83,8 @@ input:focus {
 .idea-card {
   position: relative;
   display: inline-block;
-  width: 50%;
-  margin: 10px auto;
+  width: 55%;
+  margin: 25px auto;
   padding-bottom: 10px;
   font-family: "Open Sans", sans-serif;
   border-bottom: 2px solid #D1D3D4;
@@ -87,8 +93,17 @@ input:focus {
 
 .quality, h3 {
   display: inline-block;
-  font-size: 12px;
+  font-size: 20px;
   margin: 0 1px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-family: "Roboto Slab", sans-serif;
+}
+
+.quality {
+  font-family: "Open Sans", sans-serif;
 }
 
 .up-vote, .down-vote, .delete-btn {
@@ -97,19 +112,20 @@ input:focus {
   position: absolute;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0);
-  width: 35px;
-  height: 35px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
 }
 
+.up-vote, .down-vote {
+  bottom: 35px;
+}
 .up-vote {
-  bottom: 5px;
   left: -10px;
 }
 
 .down-vote {
-  bottom: 5px;
-  left: 25px;
+  left: 45px;
 }
 
 .delete-btn {
