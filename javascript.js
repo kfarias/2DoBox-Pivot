@@ -21,6 +21,9 @@ IdeaBox.prototype.createIdeaBox = function(){
   )
 }
 
+$("textarea").on("keyup", function(){
+  $(this).css("height", $(this)[0].scrollHeight+"px");
+})
 
 $(".submit-btn").on("click", function(){
   var title = $(".title-input").val();

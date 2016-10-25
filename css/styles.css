@@ -33,9 +33,11 @@ article {
   margin: 0 100px;
 }
 
-input {
+input, textarea {
   display: block;
   outline: none;
+  resize: none;
+  overflow: hidden;
   border: 2px solid lightgray;
   margin: 20px auto;
   padding: 0 10px;
@@ -131,4 +133,47 @@ h3 {
 .delete-btn {
   top: 0;
   right: 0;
+}
+
+@media screen and (max-width: 768px){
+  input, textarea {
+    width: 85%;
+  }
+
+  textarea {
+    height: 100px;
+    text
+  }
+
+  .submit-btn {
+    width: 88%;
+  }
+
+  .idea-card {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 420px){
+  header{
+    font-size: 42px;
+  }
+  input, textarea {
+    width: 80%;
+    height: 36px;
+    font-size: 24px;
+  }
+
+  textarea {
+    height: 100px;
+    text
+  }
+
+  .submit-btn {
+    width: 87%;
+  }
+
+  .idea-card {
+    width: 80%;
+  }
 }
