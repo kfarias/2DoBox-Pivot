@@ -9,10 +9,13 @@ IdeaBox.prototype.createIdeaBox = function(){
     `<section class="idea-card">
        <h2>`+this.title+`</h2>
        <p>`+this.idea+`</p>
-       <p class="quality">`+this.quality+`</p>
-       <button class="up-vote">Up Vote</button>
-       <button class="down-vote">Down Vote</button>
-       <button class="delete-btn">Delete</button>
+       <button class="up-vote"><img src="images/upvote.svg"></button>
+       <button class="down-vote"><img src="images/downvote.svg"></button>
+       <article>
+         <h3>quality:<h3>
+         <p class="quality">`+this.quality+`</p>
+       </article>
+       <button class="delete-btn"><img src="images/delete.svg"></button>
      </section>
     `
   )
@@ -27,7 +30,7 @@ $(".submit-btn").on("click", function(){
 })
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
-  var selector = $(this).text();
+  var selector = $(this).find("img").attr("src");
   var quality = $(this).closest(".idea-card").find(".quality");
   var newQuality = getNewQuality(selector, quality.text());
   quality.text(newQuality);
@@ -37,8 +40,39 @@ $(".idea-container").on("click", ".delete-btn", function(){
   $(this).closest(".idea-card").remove();
 })
 
+
+<!--//Button mouseover image swap-->
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/upvote-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/upvote.svg");
+  }
+}, ".up-vote")
+
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/downvote-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/downvote.svg");
+  }
+}, ".down-vote")
+
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/delete-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/delete.svg");
+  }
+}, ".delete-btn")
+
+
+
 function getNewQuality(selector, quality){
-  if(selector === "Up Vote"){
+  if(selector === "images/upvote-hover.svg"){
     return upVote(quality);
   } else {
     return downVote(quality);

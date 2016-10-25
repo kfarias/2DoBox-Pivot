@@ -1,1 +1,134 @@
+header {
+  background-color: #E5F3F2;
+  padding-top: 35px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: #6D6E71;
+}
+span {
+  color: #00A79D;
+}
 
+h2, .quality {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 32px;
+  color: #6D6E71;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 24px;
+  line-height: 125%;
+  color: #939598;
+  margin-bottom: 30px;
+}
+
+article {
+  margin: 0 100px;
+}
+
+input {
+  display: block;
+  outline: none;
+  border: 2px solid lightgray;
+  margin: 20px auto;
+  padding: 0 10px;
+  width: 53%;
+  height: 42px;
+  font-size: 26px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+}
+
+input:focus {
+  border: 2px solid #00A79D;
+}
+
+.input-fields {
+  background-color: #E5F3F2;
+  text-align: center;
+  padding-top: 1px;
+  padding-bottom: 20px;
+}
+
+.submit-btn{
+  border: none;
+  width: 55%;
+  height: 45px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-color: #00A79D;
+  color: #FFFFFF;
+  font-family: "Open Sans", sans-serif;
+  font-size: 26px;
+}
+
+.submit-btn:hover, .submit-btn:focus{
+  outline: none;
+  background-color: #045E55;
+  cursor: pointer;
+}
+
+.idea-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.idea-card {
+  position: relative;
+  display: inline-block;
+  width: 55%;
+  margin: 25px auto;
+  padding-bottom: 10px;
+  font-family: "Open Sans", sans-serif;
+  border-bottom: 2px solid #D1D3D4;
+
+}
+
+.quality, h3 {
+  display: inline-block;
+  font-size: 20px;
+  margin: 0 1px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-family: "Roboto Slab", sans-serif;
+}
+
+.quality {
+  font-family: "Open Sans", sans-serif;
+}
+
+.up-vote, .down-vote, .delete-btn {
+  border: none;
+  outline: none;
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0);
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.up-vote, .down-vote {
+  bottom: 35px;
+}
+.up-vote {
+  left: -10px;
+}
+
+.down-vote {
+  left: 45px;
+}
+
+.delete-btn {
+  top: 0;
+  right: 0;
+}
