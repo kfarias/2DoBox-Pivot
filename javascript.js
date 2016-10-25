@@ -1,19 +1,27 @@
-function IdeaBox(title, idea){
+$(function(){
+  for(i=0; localStorage.length>i; i++){
+    var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    createIdeaBox(storedIdeaBox.title, storedIdeaBox.idea, storedIdeaBox.quality, storedIdeaBox.id);
+  }
+});
+
+function IdeaBox(title, idea, id){
   this.title = title;
   this.idea = idea;
+  this.id = id;
   this.quality = "swill";
 };
 
-IdeaBox.prototype.createIdeaBox = function(){
+function createIdeaBox(title, idea, quality, id){
   $(".idea-container").prepend(
-    `<section class="idea-card">
-       <p class="idea-title" contenteditable>`+this.title+`</p>
-       <p class="idea-body" contenteditable>`+this.idea+`</p>
+    `<section class="idea-card" id="`+id+`">
+       <p class="idea-title" contenteditable>`+title+`</p>
+       <p class="idea-body" contenteditable>`+idea+`</p>
        <button class="up-vote"><img src="images/upvote.svg"></button>
        <button class="down-vote"><img src="images/downvote.svg"></button>
        <article>
          <h3>quality:<h3>
-         <p class="quality">`+this.quality+`</p>
+         <p class="quality">`+quality+`</p>
        </article>
        <button class="delete-btn"><img src="images/delete.svg"></button>
      </section>
@@ -25,11 +33,13 @@ $("textarea").on("keyup", function(){
   $(this).css("height", $(this)[0].scrollHeight+"px");
 })
 
-$(".submit-btn").on("click", function(){
+$(".save-btn").on("click", function(){
   var title = $(".title-input").val();
   var idea = $(".idea-input").val();
-  var ideabox = new IdeaBox(title, idea);
-  ideabox.createIdeaBox();
+  var ideabox = new IdeaBox(title, idea, Date.now());
+  var key = ideabox.id;
+  localStorage.setItem(key, JSON.stringify(ideabox));
+  createIdeaBox(ideabox.title, ideabox.idea, ideabox.quality, ideabox.id);
   emptyInput();
 })
 
@@ -38,6 +48,10 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var selector = $(this).find("img").attr("src");
   var quality = $(this).closest(".idea-card").find(".quality");
   var newQuality = getNewQuality(selector, quality.text());
+  var key = $(this).closest(".idea-card").attr("id");
+  var ideabox = JSON.parse(localStorage.getItem(key));
+  ideabox.quality = newQuality;
+  localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
 })
 
@@ -47,32 +61,32 @@ $(".idea-container").on("click", ".delete-btn", function(){
 
 
 <!--//Button mouseover image swap-->
-// $(".idea-container").on({
-//   mouseenter:  function(){
-//     $(this).find("img").prop("src", "images/upvote-hover.svg");
-//   },
-//   mouseleave: function(){
-//     $(this).find("img").prop("src", "images/upvote.svg");
-//   }
-// }, ".up-vote")
-//
-// $(".idea-container").on({
-//   mouseenter:  function(){
-//     $(this).find("img").prop("src", "images/downvote-hover.svg");
-//   },
-//   mouseleave: function(){
-//     $(this).find("img").prop("src", "images/downvote.svg");
-//   }
-// }, ".down-vote")
-//
-// $(".idea-container").on({
-//   mouseenter:  function(){
-//     $(this).find("img").prop("src", "images/delete-hover.svg");
-//   },
-//   mouseleave: function(){
-//     $(this).find("img").prop("src", "images/delete.svg");
-//   }
-// }, ".delete-btn")
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/upvote-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/upvote.svg");
+  }
+}, ".up-vote")
+
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/downvote-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/downvote.svg");
+  }
+}, ".down-vote")
+
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/delete-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/delete.svg");
+  }
+}, ".delete-btn")
 
 
 function emptyInput() {
