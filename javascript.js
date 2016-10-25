@@ -30,7 +30,9 @@ $(".submit-btn").on("click", function(){
   var idea = $(".idea-input").val();
   var ideabox = new IdeaBox(title, idea);
   ideabox.createIdeaBox();
+  emptyInput();
 })
+
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var selector = $(this).find("img").attr("src");
@@ -72,6 +74,12 @@ $(".idea-container").on({
   }
 }, ".delete-btn")
 
+
+function emptyInput() {
+  $(".title-input").val("");
+  $(".idea-input").val("");
+  $(".idea-input").css("height", "42px");
+}
 
 
 function getNewQuality(selector, quality){
