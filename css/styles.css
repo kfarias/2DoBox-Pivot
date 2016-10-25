@@ -46,7 +46,7 @@ h3 {
   padding-bottom: 20px;
 }
 
-.submit-btn{
+.save-btn{
   border: none;
   width: 55%;
   height: 45px;
@@ -58,7 +58,7 @@ h3 {
   font-size: 26px;
 }
 
-.submit-btn:hover, .submit-btn:focus{
+.save-btn:hover, .save-btn:focus{
   outline: none;
   background-color: #045E55;
   cursor: pointer;
@@ -149,7 +149,7 @@ h3 {
     text
   }
 
-  .submit-btn {
+  .save-btn {
     width: 88%;
   }
 
@@ -173,7 +173,7 @@ h3 {
     text
   }
 
-  .submit-btn {
+  .save-btn {
     width: 87%;
   }
 
