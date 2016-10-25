@@ -45,32 +45,32 @@ $(".idea-container").on("click", ".delete-btn", function(){
 
 
 <!--//Button mouseover image swap-->
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/upvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/upvote.svg");
-  }
-}, ".up-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/downvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/downvote.svg");
-  }
-}, ".down-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/delete-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/delete.svg");
-  }
-}, ".delete-btn")
+// $(".idea-container").on({
+//   mouseenter:  function(){
+//     $(this).find("img").prop("src", "images/upvote-hover.svg");
+//   },
+//   mouseleave: function(){
+//     $(this).find("img").prop("src", "images/upvote.svg");
+//   }
+// }, ".up-vote")
+//
+// $(".idea-container").on({
+//   mouseenter:  function(){
+//     $(this).find("img").prop("src", "images/downvote-hover.svg");
+//   },
+//   mouseleave: function(){
+//     $(this).find("img").prop("src", "images/downvote.svg");
+//   }
+// }, ".down-vote")
+//
+// $(".idea-container").on({
+//   mouseenter:  function(){
+//     $(this).find("img").prop("src", "images/delete-hover.svg");
+//   },
+//   mouseleave: function(){
+//     $(this).find("img").prop("src", "images/delete.svg");
+//   }
+// }, ".delete-btn")
 
 
 
