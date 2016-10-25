@@ -15,7 +15,7 @@ IdeaBox.prototype.createIdeaBox = function(){
          <h3>quality:<h3>
          <p class="quality">`+this.quality+`</p>
        </article>
-       <button class="delete-btn">Delete</button>
+       <button class="delete-btn"><img src="images/delete.svg"></button>
      </section>
     `
   )
@@ -40,6 +40,8 @@ $(".idea-container").on("click", ".delete-btn", function(){
   $(this).closest(".idea-card").remove();
 })
 
+
+<!--//Button mouseover image swap-->
 $(".idea-container").on({
   mouseenter:  function(){
     $(this).find("img").prop("src", "images/upvote-hover.svg");
@@ -57,6 +59,16 @@ $(".idea-container").on({
     $(this).find("img").prop("src", "images/downvote.svg");
   }
 }, ".down-vote")
+
+$(".idea-container").on({
+  mouseenter:  function(){
+    $(this).find("img").prop("src", "images/delete-hover.svg");
+  },
+  mouseleave: function(){
+    $(this).find("img").prop("src", "images/delete.svg");
+  }
+}, ".delete-btn")
+
 
 
 function getNewQuality(selector, quality){
