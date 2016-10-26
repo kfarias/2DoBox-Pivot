@@ -5,23 +5,6 @@ $(function(){
   }
 });
 
-
-$(".idea-container").on("focus", ".idea-title, .idea-body", function(){
-  var selector = $(this).closest(".idea-card");
-  var key = selector.attr("id");
-  var ideabox = JSON.parse(localStorage.getItem(key));
-  $(this).on("keydown", function(event){
-    if(event.key === "Enter")
-      event.preventDefault();
-      $(this).blur();
-  })
-  $(this).on("blur", function(){
-    ideabox.title = selector.find(".idea-title").text();
-    ideabox.idea = selector.find(".idea-body").text();
-    localStorage.setItem(key, JSON.stringify(ideabox));
-  })
-})
-
 function IdeaBox(title, idea, id){
   this.title = title;
   this.idea = idea;
@@ -50,6 +33,23 @@ $("textarea").on("keyup", function(){
   $(this).css("height", $(this)[0].scrollHeight+"px");
 })
 
+$(".idea-container").on("focus", ".idea-title, .idea-body", function(){
+  var selector = $(this).closest(".idea-card");
+  var key = selector.attr("id");
+  var ideabox = JSON.parse(localStorage.getItem(key));
+  $(this).on("keydown", function(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      $(this).blur();
+    }
+  })
+  $(this).on("blur", function(){
+    ideabox.title = selector.find(".idea-title").text();
+    ideabox.idea = selector.find(".idea-body").text();
+    localStorage.setItem(key, JSON.stringify(ideabox));
+  })
+})
+
 $(".save-btn").on("click", function(){
   var title = $(".title-input").val();
   var idea = $(".idea-input").val();
@@ -73,6 +73,7 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var newQuality = getNewQuality(selector, quality.text());
   var key = ideaCard.attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
+  console.log(newQuality);
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
@@ -105,7 +106,9 @@ function upVote(quality){
     case "swill":
       return "plausible";
     case "plausible":
-      return "genius"
+      return "genius";
+    default:
+      return "genius";
   }
 }
 
@@ -114,6 +117,8 @@ function downVote(quality){
     case "genius":
       return "plausible";
     case "plausible":
-      return "swill"
+      return "swill";
+    default:
+      return "swill";
   }
 }
