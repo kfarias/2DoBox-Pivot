@@ -117,9 +117,10 @@ h3 {
   outline: none;
   position: absolute;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0);
-  width: 48px;
-  height: 48px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
 }
 
@@ -127,19 +128,32 @@ h3 {
   bottom: 35px;
 }
 .up-vote {
-  /*background-color: transparent;
-  background-repeat: no-repeat;
-  back*/
+
+  background: url(../images/upvote.svg);
   left: -10px;
 }
 
+.up-vote:hover {
+  background: url(../images/upvote-hover.svg);
+}
+
 .down-vote {
+  background: url(../images/downvote.svg);
   left: 45px;
 }
 
+.down-vote:hover {
+  background: url(../images/downvote-hover.svg);
+}
+
 .delete-btn {
+  background: url(../images/delete.svg);
   top: 0;
   right: 0;
+}
+
+.delete-btn:hover {
+  background: url(../images/delete-hover.svg);
 }
 
 @media screen and (max-width: 768px){

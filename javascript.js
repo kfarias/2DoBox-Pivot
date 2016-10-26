@@ -1,7 +1,6 @@
 $(function(){
   for(i=0; localStorage.length>i; i++){
-    var key = localStorage.key(i)
-    var storedIdeaBox = JSON.parse(localStorage.getItem(key));
+    var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
     createIdeaBox(storedIdeaBox.title, storedIdeaBox.idea, storedIdeaBox.quality, storedIdeaBox.id);
   }
 });
@@ -18,13 +17,13 @@ function createIdeaBox(title, idea, quality, id){
     `<section class="idea-card" id="`+id+`">
        <p class="idea-title" contenteditable>`+title+`</p>
        <p class="idea-body" contenteditable>`+idea+`</p>
-       <button class="up-vote"><img src="images/upvote.svg"></button>
-       <button class="down-vote"><img src="images/downvote.svg"></button>
+       <button class="up-vote"></button>
+       <button class="down-vote"></button>
        <article>
          <h3>quality:<h3>
          <p class="quality">`+quality+`</p>
        </article>
-       <button class="delete-btn"><img src="images/delete.svg"></button>
+       <button class="delete-btn"></button>
      </section>
     `
   )
@@ -63,41 +62,12 @@ $(".idea-container").on("click", ".delete-btn", function(){
 })
 
 
-<!--//Button mouseover image swap-->
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/upvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/upvote.svg");
-  }
-}, ".up-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/downvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/downvote.svg");
-  }
-}, ".down-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/delete-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/delete.svg");
-  }
-}, ".delete-btn")
-
 
 function emptyInput() {
   $(".title-input").val("");
   $(".idea-input").val("");
   $(".idea-input").css("height", "42px");
 }
-
 
 function getNewQuality(selector, quality){
   if(selector === "up-vote"){
