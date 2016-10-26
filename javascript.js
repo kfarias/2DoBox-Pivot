@@ -38,7 +38,7 @@ $(".idea-container").on("focus", ".idea-title, .idea-body", function(){
   var key = selector.attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
   $(this).on("keydown", function(event){
-    if(event.key === "Enter"){
+    if(event.keyCode === 13){
       event.preventDefault();
       $(this).blur();
     }
@@ -62,7 +62,7 @@ $(".save-btn").on("click", function(){
 })
 
 $(".title-input, .idea-input").on("keydown", function(event){
-  if(event.key === "Enter")
+  if(event.keyCode === 13)
     $(".save-btn").click();
 })
 
