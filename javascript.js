@@ -41,6 +41,7 @@ $(".idea-container").on("focus", ".idea-title, .idea-body", function(){
     if(event.keyCode === 13){
       event.preventDefault();
       $(this).blur();
+      return false;
     }
   })
   $(this).on("blur", function(){
@@ -73,7 +74,6 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var newQuality = getNewQuality(selector, quality.text());
   var key = ideaCard.attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
-  console.log(newQuality);
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
@@ -84,6 +84,17 @@ $(".idea-container").on("click", ".delete-btn", function(){
   localStorage.removeItem(selector.attr("id"));
   selector.remove();
 })
+
+$(".input-search").on("keyup", function() {
+   var searchValue = $(this).val().toLowerCase();
+   $(".idea-card").each(function(){
+     var titleText = $(this).find(".idea-title").text().toLowerCase();
+     var bodyText = $(this).find(".idea-body").text().toLowerCase();
+
+     titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
+
+  });
+});
 
 
 
