@@ -51,6 +51,7 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var newQuality = getNewQuality(selector, quality.text());
   var key = $(this).closest(".idea-card").attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
+  // we stopped here
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
