@@ -69,6 +69,11 @@ h3 {
   border: 2px solid #045E55;
 }
 
+.save-btn:disabled {
+  background: lightgray;
+  cursor: default;
+}
+
 .idea-container {
   display: flex;
   flex-direction: column;
@@ -194,11 +199,23 @@ h3 {
     text
   }
 
+  article {
+    display: flex;
+  }
+
   .save-btn {
     width: 87%;
   }
 
   .idea-card {
     width: 80%;
+  }
+
+  .idea-title {
+    font-size: 28px;
+  }
+
+  .idea-body, .quality, h3 {
+    font-size: 18px;
   }
 }
