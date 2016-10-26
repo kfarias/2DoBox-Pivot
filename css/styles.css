@@ -127,6 +127,9 @@ h3 {
   bottom: 35px;
 }
 .up-vote {
+  /*background-color: transparent;
+  background-repeat: no-repeat;
+  back*/
   left: -10px;
 }
 
