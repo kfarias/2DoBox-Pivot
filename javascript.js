@@ -85,14 +85,14 @@ $(".idea-container").on("click", ".delete-btn", function(){
   selector.remove();
 })
 
-$(".idea-container").on("keyup", ".input-search", function(event) {
-  if (event.keyCode === 13);
+$(".input-search").on("keyup", function() {
    var searchValue = $(this).val().toLowerCase();
-   $(".title-input, .idea-input").each(function(){
-   var resultText = $(this).val().toLowerCase();
-   $(this).closest(".title-input, .idea-input") [
-   resultText.indexOf(searchValue) !== -1 ?
-   "show" : "hide"]();
+   $(".idea-card").each(function(){
+     var titleText = $(this).find(".idea-title").text().toLowerCase();
+     var bodyText = $(this).find(".idea-body").text().toLowerCase();
+
+     titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
+
   });
 });
 
