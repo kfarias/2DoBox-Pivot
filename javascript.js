@@ -45,10 +45,11 @@ $(".save-btn").on("click", function(){
 
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
+  var ideaCard = $(this).closest(".idea-card");
   var selector = $(this).attr("class");
-  var quality = $(this).closest(".idea-card").find(".quality");
+  var quality = ideaCard.find(".quality");
   var newQuality = getNewQuality(selector, quality.text());
-  var key = $(this).closest(".idea-card").attr("id");
+  var key = ideaCard.attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
