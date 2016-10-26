@@ -1,8 +1,7 @@
 $(function(){
   for(i=0; localStorage.length>i; i++){
-    var key = localStorage.key(i)
-    var storedIdeaBox = JSON.parse(localStorage.getItem(key));
-    createIdeaBox(storedIdeaBox.title, storedIdeaBox.idea, storedIdeaBox.quality, storedIdeaBox.id);
+    var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    createIdeaBox(storedIdeaBox);
   }
 });
 
@@ -13,18 +12,18 @@ function IdeaBox(title, idea, id){
   this.quality = "swill";
 };
 
-function createIdeaBox(title, idea, quality, id){
+function createIdeaBox(ideabox){
   $(".idea-container").prepend(
-    `<section class="idea-card" id="`+id+`">
-       <p class="idea-title" contenteditable>`+title+`</p>
-       <p class="idea-body" contenteditable>`+idea+`</p>
-       <button class="up-vote"><img src="images/upvote.svg"></button>
-       <button class="down-vote"><img src="images/downvote.svg"></button>
+    `<section class="idea-card" id="`+ideabox.id+`">
+      <button class="delete-btn"></button>
+       <p class="idea-title" contenteditable>`+ideabox.title+`</p>
+       <p class="idea-body" contenteditable>`+ideabox.idea+`</p>
+       <button class="up-vote"></button>
+       <button class="down-vote"></button>
        <article>
          <h3>quality:<h3>
-         <p class="quality">`+quality+`</p>
+         <p class="quality">`+ideabox.quality+`</p>
        </article>
-       <button class="delete-btn"><img src="images/delete.svg"></button>
      </section>
     `
   )
@@ -34,23 +33,47 @@ $("textarea").on("keyup", function(){
   $(this).css("height", $(this)[0].scrollHeight+"px");
 })
 
+$(".idea-container").on("focus", ".idea-title, .idea-body", function(){
+  var selector = $(this).closest(".idea-card");
+  var key = selector.attr("id");
+  var ideabox = JSON.parse(localStorage.getItem(key));
+  $(this).on("keydown", function(event){
+    if(event.key === "Enter"){
+      event.preventDefault();
+      $(this).blur();
+    }
+  })
+  $(this).on("blur", function(){
+    ideabox.title = selector.find(".idea-title").text();
+    ideabox.idea = selector.find(".idea-body").text();
+    localStorage.setItem(key, JSON.stringify(ideabox));
+  })
+})
+
 $(".save-btn").on("click", function(){
   var title = $(".title-input").val();
   var idea = $(".idea-input").val();
   var ideabox = new IdeaBox(title, idea, Date.now());
   var key = ideabox.id;
   localStorage.setItem(key, JSON.stringify(ideabox));
-  createIdeaBox(ideabox.title, ideabox.idea, ideabox.quality, ideabox.id);
+  createIdeaBox(ideabox);
   emptyInput();
+  $(".title-input").focus();
 })
 
+$(".title-input, .idea-input").on("keydown", function(event){
+  if(event.key === "Enter")
+    $(".save-btn").click();
+})
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
+  var ideaCard = $(this).closest(".idea-card");
   var selector = $(this).attr("class");
-  var quality = $(this).closest(".idea-card").find(".quality");
+  var quality = ideaCard.find(".quality");
   var newQuality = getNewQuality(selector, quality.text());
-  var key = $(this).closest(".idea-card").attr("id");
+  var key = ideaCard.attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
+  console.log(newQuality);
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
@@ -63,41 +86,12 @@ $(".idea-container").on("click", ".delete-btn", function(){
 })
 
 
-<!--//Button mouseover image swap-->
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/upvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/upvote.svg");
-  }
-}, ".up-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/downvote-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/downvote.svg");
-  }
-}, ".down-vote")
-
-$(".idea-container").on({
-  mouseenter:  function(){
-    $(this).find("img").prop("src", "images/delete-hover.svg");
-  },
-  mouseleave: function(){
-    $(this).find("img").prop("src", "images/delete.svg");
-  }
-}, ".delete-btn")
-
 
 function emptyInput() {
   $(".title-input").val("");
   $(".idea-input").val("");
   $(".idea-input").css("height", "42px");
 }
-
 
 function getNewQuality(selector, quality){
   if(selector === "up-vote"){
@@ -112,7 +106,9 @@ function upVote(quality){
     case "swill":
       return "plausible";
     case "plausible":
-      return "genius"
+      return "genius";
+    default:
+      return "genius";
   }
 }
 
@@ -121,6 +117,8 @@ function downVote(quality){
     case "genius":
       return "plausible";
     case "plausible":
-      return "swill"
+      return "swill";
+    default:
+      return "swill";
   }
 }
