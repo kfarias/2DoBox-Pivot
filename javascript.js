@@ -1,9 +1,26 @@
 $(function(){
   for(i=0; localStorage.length>i; i++){
     var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
-    createIdeaBox(storedIdeaBox.title, storedIdeaBox.idea, storedIdeaBox.quality, storedIdeaBox.id);
+    createIdeaBox(storedIdeaBox);
   }
 });
+
+
+$(".idea-container").on("focus", ".idea-title, .idea-body", function(){
+  var selector = $(this).closest(".idea-card");
+  var key = selector.attr("id");
+  var ideabox = JSON.parse(localStorage.getItem(key));
+  $(this).on("keydown", function(event){
+    if(event.key === "Enter")
+      event.preventDefault();
+      $(this).blur();
+  })
+  $(this).on("blur", function(){
+    ideabox.title = selector.find(".idea-title").text();
+    ideabox.idea = selector.find(".idea-body").text();
+    localStorage.setItem(key, JSON.stringify(ideabox));
+  })
+})
 
 function IdeaBox(title, idea, id){
   this.title = title;
@@ -12,18 +29,18 @@ function IdeaBox(title, idea, id){
   this.quality = "swill";
 };
 
-function createIdeaBox(title, idea, quality, id){
+function createIdeaBox(ideabox){
   $(".idea-container").prepend(
-    `<section class="idea-card" id="`+id+`">
-       <p class="idea-title" contenteditable>`+title+`</p>
-       <p class="idea-body" contenteditable>`+idea+`</p>
+    `<section class="idea-card" id="`+ideabox.id+`">
+      <button class="delete-btn"></button>
+       <p class="idea-title" contenteditable>`+ideabox.title+`</p>
+       <p class="idea-body" contenteditable>`+ideabox.idea+`</p>
        <button class="up-vote"></button>
        <button class="down-vote"></button>
        <article>
          <h3>quality:<h3>
-         <p class="quality">`+quality+`</p>
+         <p class="quality">`+ideabox.quality+`</p>
        </article>
-       <button class="delete-btn"></button>
      </section>
     `
   )
@@ -39,10 +56,15 @@ $(".save-btn").on("click", function(){
   var ideabox = new IdeaBox(title, idea, Date.now());
   var key = ideabox.id;
   localStorage.setItem(key, JSON.stringify(ideabox));
-  createIdeaBox(ideabox.title, ideabox.idea, ideabox.quality, ideabox.id);
+  createIdeaBox(ideabox);
   emptyInput();
+  $(".title-input").focus();
 })
 
+$(".title-input, .idea-input").on("keydown", function(event){
+  if(event.key === "Enter")
+    $(".save-btn").click();
+})
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var ideaCard = $(this).closest(".idea-card");

@@ -31,7 +31,7 @@ input, textarea {
   font-family: "Open Sans", sans-serif;
 }
 
-input:focus {
+input:focus, textarea:focus {
   border: 2px solid #00A79D;
 }
 
@@ -46,7 +46,7 @@ h3 {
   padding-bottom: 20px;
 }
 
-.save-btn{
+.save-btn {
   border: none;
   width: 55%;
   height: 45px;
@@ -58,10 +58,15 @@ h3 {
   font-size: 26px;
 }
 
-.save-btn:hover, .save-btn:focus{
+.save-btn:hover {
   outline: none;
   background-color: #045E55;
   cursor: pointer;
+}
+
+.save-btn:focus {
+  outline: none;
+  border: 2px solid #045E55;
 }
 
 .idea-container {
@@ -83,7 +88,7 @@ h3 {
 .quality, h3 {
   display: inline-block;
   font-size: 20px;
-  margin: 0 1px;
+  margin: 0 2px;
   margin-bottom: 20px;
 }
 
@@ -115,7 +120,6 @@ h3 {
 .up-vote, .down-vote, .delete-btn {
   border: none;
   outline: none;
-  position: absolute;
   border-radius: 50%;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -125,6 +129,7 @@ h3 {
 }
 
 .up-vote, .down-vote {
+  position: absolute;
   bottom: 35px;
 }
 .up-vote {
@@ -148,8 +153,7 @@ h3 {
 
 .delete-btn {
   background: url(../images/delete.svg);
-  top: 0;
-  right: 0;
+  float: right;
 }
 
 .delete-btn:hover {
