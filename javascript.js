@@ -1,6 +1,7 @@
 $(function(){
   for(i=0; localStorage.length>i; i++){
-    var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    var key = localStorage.key(i)
+    var storedIdeaBox = JSON.parse(localStorage.getItem(key));
     createIdeaBox(storedIdeaBox.title, storedIdeaBox.idea, storedIdeaBox.quality, storedIdeaBox.id);
   }
 });
@@ -45,7 +46,7 @@ $(".save-btn").on("click", function(){
 
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
-  var selector = $(this).find("img").attr("src");
+  var selector = $(this).attr("class");
   var quality = $(this).closest(".idea-card").find(".quality");
   var newQuality = getNewQuality(selector, quality.text());
   var key = $(this).closest(".idea-card").attr("id");
@@ -56,7 +57,9 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
 })
 
 $(".idea-container").on("click", ".delete-btn", function(){
-  $(this).closest(".idea-card").remove();
+  var selector = $(this).closest(".idea-card");
+  localStorage.removeItem(selector.attr("id"));
+  selector.remove();
 })
 
 
@@ -97,7 +100,7 @@ function emptyInput() {
 
 
 function getNewQuality(selector, quality){
-  if(selector === "images/upvote-hover.svg"){
+  if(selector === "up-vote"){
     return upVote(quality);
   } else {
     return downVote(quality);
