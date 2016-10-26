@@ -69,6 +69,7 @@ $(".title-input, .idea-input").on("keyup", function(){
 $(".title-input, .idea-input").on("keydown", function(event){
   if(event.keyCode === 13 && $(".save-btn").prop("disabled") === false){
     $(".save-btn").click();
+    $(".save-btn").prop("disabled", true);
   }
 })
 
