@@ -62,9 +62,15 @@ $(".save-btn").on("click", function(){
   $(".title-input").focus();
 })
 
+$(".title-input, .idea-input").on("keyup", function(){
+  /\S/.test($(".title-input").val()) && /\S/.test($(".idea-input").val()) ? $(".save-btn").prop("disabled", false) : $(".save-btn").prop("disabled", true);
+});
+
 $(".title-input, .idea-input").on("keydown", function(event){
-  if(event.keyCode === 13)
+  if(event.keyCode === 13 && $(".save-btn").prop("disabled") === false){
     $(".save-btn").click();
+    $(".save-btn").prop("disabled", true);
+  }
 })
 
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
@@ -95,6 +101,7 @@ $(".input-search").on("keyup", function() {
 
   });
 });
+
 
 
 
