@@ -91,6 +91,17 @@ $(".title-input, .idea-input").on("keydown", function(event){
   }
 })
 
+$(".input-search").on("keyup", function() {
+  var searchValue = $(this).val().toLowerCase();
+  $(".idea-card").each(function(){
+  var titleText = $(this).find(".idea-title").text().toLowerCase();
+  var bodyText = $(this).find(".idea-body").text().toLowerCase();
+
+  titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
+
+  });
+});
+
 $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var ideaCard = $(this).closest(".idea-card");
   var selector = $(this).attr("class");
@@ -109,16 +120,6 @@ $(".idea-container").on("click", ".delete-btn", function(){
   selector.remove();
 })
 
-$(".input-search").on("keyup", function() {
-   var searchValue = $(this).val().toLowerCase();
-   $(".idea-card").each(function(){
-     var titleText = $(this).find(".idea-title").text().toLowerCase();
-     var bodyText = $(this).find(".idea-body").text().toLowerCase();
-
-     titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
-
-  });
-});
 
 
 
@@ -161,5 +162,5 @@ function downVote(quality){
 
 function getTimeStamp(){
   var time = Date();
-  return time;
+    return time;
 }
