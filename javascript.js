@@ -33,6 +33,8 @@ function createIdeaBox(ideabox){
   )
 }
 
+
+
 $("textarea").on("keyup", function(){
   $(this).css("height", $(this)[0].scrollHeight+"px");
 })
@@ -71,11 +73,9 @@ $(".sort-btn").on("click", function(){
   var geniusToSwillSort = $(".idea-card").sort(function(a,b){
     return $(a).find(".quality").text() > $(b).find(".quality").text();
   })
-
   var swillToGeniusSort = $(".idea-card").sort(function(a,b){
     return $(a).find(".quality").text() < $(b).find(".quality").text();
   })
-
   sortCount % 2 === 0 ? $(".idea-container").html(geniusToSwillSort) : $(".idea-container").html(swillToGeniusSort);
   sortCount++;
 })
@@ -95,9 +95,9 @@ $(".idea-container").on("click", ".up-vote, .down-vote", function(){
   var ideaCard = $(this).closest(".idea-card");
   var selector = $(this).attr("class");
   var quality = ideaCard.find(".quality");
-  var newQuality = getNewQuality(selector, quality.text());
   var key = ideaCard.attr("id");
   var ideabox = JSON.parse(localStorage.getItem(key));
+  var newQuality = getNewQuality(selector, quality.text());
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
