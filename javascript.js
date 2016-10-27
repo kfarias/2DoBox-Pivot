@@ -1,3 +1,5 @@
+var sortCount = 0;
+
 $(function(){
   for(i=0; localStorage.length>i; i++){
     var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
@@ -5,11 +7,12 @@ $(function(){
   }
 });
 
-function IdeaBox(title, idea, id){
+function IdeaBox(title, idea, id, timeStamp){
   this.title = title;
   this.idea = idea;
   this.id = id;
   this.quality = "swill";
+  this.timeStamp = timeStamp;
 };
 
 function createIdeaBox(ideabox){
@@ -24,6 +27,7 @@ function createIdeaBox(ideabox){
          <h3>quality:<h3>
          <p class="quality">`+ideabox.quality+`</p>
        </article>
+       <aside class="time-stamp">`+ideabox.timeStamp+`</aside>
      </section>
     `
   )
@@ -54,12 +58,26 @@ $(".idea-container").on("focus", ".idea-title, .idea-body", function(){
 $(".save-btn").on("click", function(){
   var title = $(".title-input").val();
   var idea = $(".idea-input").val();
-  var ideabox = new IdeaBox(title, idea, Date.now());
+  var timeStamp = getTimeStamp();
+  var ideabox = new IdeaBox(title, idea, Date.now(), timeStamp);
   var key = ideabox.id;
   localStorage.setItem(key, JSON.stringify(ideabox));
-  createIdeaBox(ideabox);
+  createIdeaBox(ideabox, timeStamp);
   emptyInput();
   $(".title-input").focus();
+})
+
+$(".sort-btn").on("click", function(){
+  var geniusToSwillSort = $(".idea-card").sort(function(a,b){
+    return $(a).find(".quality").text() > $(b).find(".quality").text();
+  })
+
+  var swillToGeniusSort = $(".idea-card").sort(function(a,b){
+    return $(a).find(".quality").text() < $(b).find(".quality").text();
+  })
+
+  sortCount % 2 === 0 ? $(".idea-container").html(geniusToSwillSort) : $(".idea-container").html(swillToGeniusSort);
+  sortCount++;
 })
 
 $(".title-input, .idea-input").on("keyup", function(){
@@ -139,4 +157,9 @@ function downVote(quality){
     default:
       return "swill";
   }
+}
+
+function getTimeStamp(){
+  var time = Date();
+  return time;
 }
