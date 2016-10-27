@@ -92,7 +92,6 @@ $(".input-search").on("keyup", function() {
      var bodyText = $(this).find(".idea-body").text().toLowerCase();
 
      titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
-
   });
 });
 
