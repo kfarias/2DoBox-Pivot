@@ -46,7 +46,7 @@ h3 {
   padding-bottom: 20px;
 }
 
-.save-btn {
+.save-btn, .sort-btn {
   border: none;
   width: 55%;
   height: 45px;
@@ -58,13 +58,13 @@ h3 {
   font-size: 26px;
 }
 
-.save-btn:hover {
+.save-btn:hover, .sort-btn:hover {
   outline: none;
   background-color: #045E55;
   cursor: pointer;
 }
 
-.save-btn:focus {
+.save-btn:focus, .sort-btn:focus {
   outline: none;
   border: 2px solid #045E55;
 }
@@ -165,6 +165,34 @@ h3 {
   background: url(../images/delete-hover.svg);
 }
 
+.time-stamp {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 12px;
+  color: lightgray;
+}
+
+.search-sort-fields {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.input-search, .sort-btn {
+  margin: 20px 5px;
+}
+
+.input-search {
+  width: 47%;
+}
+
+.sort-btn {
+  width: 50px;
+  height: 46px;
+  font-size: 20px;
+}
+
 @media screen and (max-width: 768px){
   input, textarea {
     width: 85%;
@@ -182,6 +210,17 @@ h3 {
   .idea-card {
     width: 85%;
   }
+
+
+    .input-search {
+      width: 77%;
+    }
+
+    .sort-btn {
+      width: 50px;
+      height: 46px;
+      font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 420px){
@@ -218,4 +257,15 @@ h3 {
   .idea-body, .quality, h3 {
     font-size: 18px;
   }
+
+
+    .input-search {
+      width: 60%;
+    }
+
+    .sort-btn {
+      width: 50px;
+      height: 40px;
+      font-size: 14px;
+    }
 }
