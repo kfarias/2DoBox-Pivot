@@ -1,8 +1,8 @@
-var sortCount = 0;
+const sortCount = 0;
 
-$(function(){
+$(() => {
   for(i=0; localStorage.length>i; i++){
-    var storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    const storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
     createIdeaBox(storedIdeaBox);
   }
 });
@@ -17,32 +17,31 @@ function IdeaBox(title, idea, id, timeStamp){
 
 function createIdeaBox(ideabox){
   $(".idea-container").prepend(
-    `<section class="idea-card" id="`+ideabox.id+`">
+    `<section class="idea-card" id="${ideabox.id}">
       <button class="delete-btn"></button>
-       <p class="idea-title" contenteditable>`+ideabox.title+`</p>
-       <p class="idea-body" contenteditable>`+ideabox.idea+`</p>
+       <p class="idea-title" contenteditable>${ideabox.title}</p>
+       <p class="idea-body" contenteditable>${ideabox.idea}</p>
        <button class="up-vote"></button>
        <button class="down-vote"></button>
        <article>
          <h3>quality:<h3>
-         <p class="quality">`+ideabox.quality+`</p>
+         <p class="quality">${ideabox.quality}</p>
        </article>
-       <aside class="time-stamp">`+ideabox.timeStamp+`</aside>
-     </section>
-    `
+       <aside class="time-stamp">${ideabox.timeStamp}</aside>
+     </section>`
   )
-}
+};
 
 
 
-$("textarea").on("keyup", function(){
+$("textarea").on("keyup", () => {
   $(this).css("height", $(this)[0].scrollHeight+"px");
 })
 
-$(".idea-container").on("focus", ".idea-title, .idea-body", function(){
-  var selector = $(this).closest(".idea-card");
-  var key = selector.attr("id");
-  var ideabox = JSON.parse(localStorage.getItem(key));
+$(".idea-container").on("focus", ".idea-title, .idea-body", () => {
+  const selector = $(this).closest(".idea-card");
+  const key = selector.attr("id");
+  const ideabox = JSON.parse(localStorage.getItem(key));
   $(this).on("keydown", function(event){
     if(event.keyCode === 13){
       event.preventDefault();
@@ -50,88 +49,85 @@ $(".idea-container").on("focus", ".idea-title, .idea-body", function(){
       return false;
     }
   })
-  $(this).on("blur", function(){
+  $(this).on("blur", () => {
     ideabox.title = selector.find(".idea-title").text();
     ideabox.idea = selector.find(".idea-body").text();
     localStorage.setItem(key, JSON.stringify(ideabox));
   })
 })
 
-$(".save-btn").on("click", function(){
-  var title = $(".title-input").val();
-  var idea = $(".idea-input").val();
-  var timeStamp = getTimeStamp();
-  var ideabox = new IdeaBox(title, idea, Date.now(), timeStamp);
-  var key = ideabox.id;
+$(".save-btn").on("click", () => {
+  const title = $(".title-input").val();
+  const idea = $(".idea-input").val();
+  const timeStamp = getTimeStamp();
+  const ideabox = new IdeaBox(title, idea, Date.now(), timeStamp);
+  const key = ideabox.id;
   localStorage.setItem(key, JSON.stringify(ideabox));
   createIdeaBox(ideabox, timeStamp);
   emptyInput();
   $(".title-input").focus();
 })
 
-$(".sort-btn").on("click", function(){
-  var geniusToSwillSort = $(".idea-card").sort(function(a,b){
+$(".sort-btn").on("click", () => {
+  const geniusToSwillSort = $(".idea-card").sort((a,b) => {
     return $(a).find(".quality").text() > $(b).find(".quality").text();
   })
-  var swillToGeniusSort = $(".idea-card").sort(function(a,b){
+  const swillToGeniusSort = $(".idea-card").sort((a,b) => {
     return $(a).find(".quality").text() < $(b).find(".quality").text();
   })
   sortCount % 2 === 0 ? $(".idea-container").html(geniusToSwillSort) : $(".idea-container").html(swillToGeniusSort);
   sortCount++;
 })
 
-$(".title-input, .idea-input").on("keyup", function(){
+$(".title-input, .idea-input").on("keyup", () => {
   /\S/.test($(".title-input").val()) && /\S/.test($(".idea-input").val()) ? $(".save-btn").prop("disabled", false) : $(".save-btn").prop("disabled", true);
 });
 
-$(".title-input, .idea-input").on("keydown", function(event){
+$(".title-input, .idea-input").on("keydown", event => {
   if(event.keyCode === 13 && $(".save-btn").prop("disabled") === false){
     $(".save-btn").click();
     $(".save-btn").prop("disabled", true);
   }
 })
 
-$(".input-search").on("keyup", function() {
-  var searchValue = $(this).val().toLowerCase();
+$(".input-search").on("keyup", () => {
+  const searchValue = $(this).val().toLowerCase();
   $(".idea-card").each(function(){
-  var titleText = $(this).find(".idea-title").text().toLowerCase();
-  var bodyText = $(this).find(".idea-body").text().toLowerCase();
+  const titleText = $(this).find(".idea-title").text().toLowerCase();
+  const bodyText = $(this).find(".idea-body").text().toLowerCase();
 
   titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
 
   });
 });
 
-$(".idea-container").on("click", ".up-vote, .down-vote", function(){
-  var ideaCard = $(this).closest(".idea-card");
-  var selector = $(this).attr("class");
-  var quality = ideaCard.find(".quality");
-  var key = ideaCard.attr("id");
-  var ideabox = JSON.parse(localStorage.getItem(key));
-  var newQuality = getNewQuality(selector, quality.text());
+$(".idea-container").on("click", ".up-vote, .down-vote", ()=>{
+  const ideaCard = $(this).closest(".idea-card");
+  const selector = $(this).attr("class");
+  const quality = ideaCard.find(".quality");
+  const key = ideaCard.attr("id");
+  const ideabox = JSON.parse(localStorage.getItem(key));
+  const newQuality = getNewQuality(selector, quality.text());
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
 })
 
-$(".idea-container").on("click", ".delete-btn", function(){
-  var selector = $(this).closest(".idea-card");
+$(".idea-container").on("click", ".delete-btn", ()=>{
+  const selector = $(this).closest(".idea-card");
   localStorage.removeItem(selector.attr("id"));
   selector.remove();
 })
 
-$(".input-search").on("keyup", function() {
-   var searchValue = $(this).val().toLowerCase();
+$(".input-search").on("keyup", ()=> {
+   const searchValue = $(this).val().toLowerCase();
    $(".idea-card").each(function(){
-     var titleText = $(this).find(".idea-title").text().toLowerCase();
-     var bodyText = $(this).find(".idea-body").text().toLowerCase();
+     const titleText = $(this).find(".idea-title").text().toLowerCase();
+     const bodyText = $(this).find(".idea-body").text().toLowerCase();
 
      titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
   });
 });
-
-
-
 
 
 function emptyInput() {
@@ -171,6 +167,6 @@ function downVote(quality){
 }
 
 function getTimeStamp(){
-  var time = Date();
+  const time = Date();
     return time;
 }
