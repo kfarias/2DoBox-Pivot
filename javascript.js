@@ -1,8 +1,8 @@
-const sortCount = 0;
+let sortCount = 0;
 
 $(() => {
   for(i=0; localStorage.length>i; i++){
-    const storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    let storedIdeaBox = JSON.parse(localStorage.getItem(localStorage.key(i)));
     createIdeaBox(storedIdeaBox);
   }
 });
@@ -39,9 +39,9 @@ $("textarea").on("keyup", () => {
 })
 
 $(".idea-container").on("focus", ".idea-title, .idea-body", () => {
-  const selector = $(this).closest(".idea-card");
-  const key = selector.attr("id");
-  const ideabox = JSON.parse(localStorage.getItem(key));
+  let selector = $(this).closest(".idea-card");
+  let key = selector.attr("id");
+  let ideabox = JSON.parse(localStorage.getItem(key));
   $(this).on("keydown", function(event){
     if(event.keyCode === 13){
       event.preventDefault();
@@ -57,11 +57,11 @@ $(".idea-container").on("focus", ".idea-title, .idea-body", () => {
 })
 
 $(".save-btn").on("click", () => {
-  const title = $(".title-input").val();
-  const idea = $(".idea-input").val();
-  const timeStamp = getTimeStamp();
-  const ideabox = new IdeaBox(title, idea, Date.now(), timeStamp);
-  const key = ideabox.id;
+  let title = $(".title-input").val();
+  let idea = $(".idea-input").val();
+  let timeStamp = getTimeStamp();
+  let ideabox = new IdeaBox(title, idea, Date.now(), timeStamp);
+  let key = ideabox.id;
   localStorage.setItem(key, JSON.stringify(ideabox));
   createIdeaBox(ideabox, timeStamp);
   emptyInput();
@@ -69,10 +69,10 @@ $(".save-btn").on("click", () => {
 })
 
 $(".sort-btn").on("click", () => {
-  const geniusToSwillSort = $(".idea-card").sort((a,b) => {
+  let geniusToSwillSort = $(".idea-card").sort((a,b) => {
     return $(a).find(".quality").text() > $(b).find(".quality").text();
   })
-  const swillToGeniusSort = $(".idea-card").sort((a,b) => {
+  let swillToGeniusSort = $(".idea-card").sort((a,b) => {
     return $(a).find(".quality").text() < $(b).find(".quality").text();
   })
   sortCount % 2 === 0 ? $(".idea-container").html(geniusToSwillSort) : $(".idea-container").html(swillToGeniusSort);
@@ -91,10 +91,10 @@ $(".title-input, .idea-input").on("keydown", event => {
 })
 
 $(".input-search").on("keyup", () => {
-  const searchValue = $(this).val().toLowerCase();
+  let searchValue = $(this).val().toLowerCase();
   $(".idea-card").each(function(){
-  const titleText = $(this).find(".idea-title").text().toLowerCase();
-  const bodyText = $(this).find(".idea-body").text().toLowerCase();
+  let titleText = $(this).find(".idea-title").text().toLowerCase();
+  let bodyText = $(this).find(".idea-body").text().toLowerCase();
 
   titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
 
@@ -102,28 +102,28 @@ $(".input-search").on("keyup", () => {
 });
 
 $(".idea-container").on("click", ".up-vote, .down-vote", ()=>{
-  const ideaCard = $(this).closest(".idea-card");
-  const selector = $(this).attr("class");
-  const quality = ideaCard.find(".quality");
-  const key = ideaCard.attr("id");
-  const ideabox = JSON.parse(localStorage.getItem(key));
-  const newQuality = getNewQuality(selector, quality.text());
+  let ideaCard = $(this).closest(".idea-card");
+  let selector = $(this).attr("class");
+  let quality = ideaCard.find(".quality");
+  let key = ideaCard.attr("id");
+  let ideabox = JSON.parse(localStorage.getItem(key));
+  let newQuality = getNewQuality(selector, quality.text());
   ideabox.quality = newQuality;
   localStorage.setItem(key, JSON.stringify(ideabox));
   quality.text(newQuality);
 })
 
 $(".idea-container").on("click", ".delete-btn", ()=>{
-  const selector = $(this).closest(".idea-card");
+  let selector = $(this).closest(".idea-card");
   localStorage.removeItem(selector.attr("id"));
   selector.remove();
 })
 
 $(".input-search").on("keyup", ()=> {
-   const searchValue = $(this).val().toLowerCase();
+   let searchValue = $(this).val().toLowerCase();
    $(".idea-card").each(function(){
-     const titleText = $(this).find(".idea-title").text().toLowerCase();
-     const bodyText = $(this).find(".idea-body").text().toLowerCase();
+     let titleText = $(this).find(".idea-title").text().toLowerCase();
+     let bodyText = $(this).find(".idea-body").text().toLowerCase();
 
      titleText.indexOf(searchValue) != -1 || bodyText.indexOf(searchValue) != -1 ? $(this).show() : $(this).hide();
   });
@@ -167,6 +167,6 @@ function downVote(quality){
 }
 
 function getTimeStamp(){
-  const time = Date();
+  let time = Date();
     return time;
 }
