@@ -173,6 +173,11 @@ h3 {
   right: 0;
 }
 
+.grey-background{
+  background: lightgrey;
+  text-decoration: line-through;
+}
+
 .search-sort-fields {
   display: flex;
   justify-content: center;
