@@ -46,7 +46,7 @@ h3 {
   text-align: center;
 }
 
-.save-btn, .sort-btn {
+.save-btn, .sort-btn{
   background-color: #00A79D;
   border: none;
   color: #FFFFFF;
@@ -137,33 +137,7 @@ h3 {
   bottom: 35px;
   position: absolute;
 }
-.up-vote {
 
-  background: url(../images/upvote.svg);
-  left: -10px;
-}
-
-.up-vote:hover {
-  background: url(../images/upvote-hover.svg);
-}
-
-.down-vote {
-  background: url(../images/downvote.svg);
-  left: 45px;
-}
-
-.down-vote:hover {
-  background: url(../images/downvote-hover.svg);
-}
-
-.delete-btn {
-  background: url(../images/delete.svg);
-  float: right;
-}
-
-.delete-btn:hover {
-  background: url(../images/delete-hover.svg);
-}
 
 .time-stamp {
   bottom: 0;
@@ -190,89 +164,4 @@ h3 {
 
 .input-search {
   width: 47%;
-}
-
-.sort-btn {
-  font-size: 20px;
-  height: 46px;
-  width: 50px;
-}
-
-@media screen and (max-width: 768px){
-  input, textarea {
-    width: 85%;
-  }
-
-  textarea {
-    height: 100px;
-  }
-
-  .save-btn {
-    width: 88%;
-  }
-
-  .todo-card {
-    width: 85%;
-  }
-
-
-    .input-search {
-      width: 77%;
-    }
-
-    .sort-btn {
-      font-size: 16px;
-      height: 46px;
-      width: 50px;
-    }
-}
-
-ul li:nth-child(n+11) {
-    display:none;
-}
-
-@media screen and (max-width: 420px){
-  header{
-    font-size: 42px;
-  }
-  input, textarea {
-    font-size: 24px;
-    height: 36px;
-    width: 80%;
-  }
-
-  textarea {
-    height: 100px;
-  }
-
-  article {
-    display: flex;
-  }
-
-  .save-btn {
-    width: 87%;
-  }
-
-  .todo-card {
-    width: 80%;
-  }
-
-  .todo-title {
-    font-size: 28px;
-  }
-
-  .todo-body, .quality, h3 {
-    font-size: 18px;
-  }
-
-
-    .input-search {
-      width: 60%;
-    }
-
-    .sort-btn {
-      width: 50px;
-      height: 40px;
-      font-size: 14px;
-    }
 }
