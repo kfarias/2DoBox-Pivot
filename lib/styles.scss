@@ -52,7 +52,7 @@ h3 {
   text-align: center;
 }
 
-.save-btn, .sort-btn {
+.save-btn, .sort-btn, .show-completed-btn {
   background-color: $offgreen;
   border: none;
   color: #FFFFFF;
@@ -64,13 +64,13 @@ h3 {
   width: 55%;
 }
 
-.save-btn:hover, .sort-btn:hover {
+.save-btn:hover, .sort-btn:hover, .show-completed-btn {
   background-color: #045E55;
   cursor: pointer;
   outline: none;
 }
 
-.save-btn:focus, .sort-btn:focus {
+.save-btn:focus, .sort-btn:focus, .show-completed-btn {
   border: 2px solid #045E55;
   outline: none;
 }
@@ -202,6 +202,10 @@ h3 {
   font-size: 20px;
   height: 46px;
   width: 50px;
+}
+
+ul li:nth-child(n+11) {
+    display:none;
 }
 
 @media screen and (max-width: 768px){
