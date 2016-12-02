@@ -227,6 +227,10 @@ h3 {
     }
 }
 
+ul li:nth-child(n+11) {
+    display:none;
+}
+
 @media screen and (max-width: 420px){
   header{
     font-size: 42px;
