@@ -11,8 +11,8 @@
     <h1><span>2Do</span>Box</h1>
   </header>
     <section class="input-fields">
-      <input aria-label="title" class="title-input" type="text" placeholder="Title">
-      <textarea aria-label="task" maxlength='120' class="todo-input" type="text" placeholder="Task"></textarea>
+      <input aria-label="title" class="title-input" type="text" placeholder="Title" name='title'>
+      <textarea aria-label="task" maxlength='120' class="todo-input" type="text" placeholder="Task" name='task'></textarea>
       <div class='result'><br></div>
       <button class="save-btn" type="button" disabled>save</button>
       <br>
@@ -21,7 +21,7 @@
 
     <section class="search-sort-fields">
 
-      <input class="input-search" type="text" placeholder="Search">
+      <input aria-label="search-tasks" class="input-search" type="text" placeholder="Search">
       <button id="critical-btn" class="quality-btns">Critical</button>
       <button id="high-btn" class="quality-btns">High</button>
       <button id="normal-btn" class="quality-btns">Normal</button>
