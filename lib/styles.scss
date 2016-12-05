@@ -1,21 +1,15 @@
 /* lib/styles.scss */
-$offwhite: #E5F3F2;
-$offgrey: #6D6E71;
-$offgreen: #00A79D;
-$mainfont: "Open Sans", sans-serif;
+@import "variables.scss"; 
 
 header {
   background-color: $offwhite;
-  color: $offgrey;
-  font-family: "Roboto Slab", sans-serif;
+  color: $forestgreen;
+  font-family: $robotfont;
   font-size: 64px;
   font-weight: 700;
   padding-top: 35px;
-  padding-bottom: 20px;
+  padding-bottom: $regularsize;
   text-align: center;
-}
-span {
-  color: $offgreen;
 }
 
 article {
@@ -29,7 +23,7 @@ input, textarea {
   font-size: 26px;
   font-weight: 700;
   height: 42px;
-  margin: 20px auto;
+  margin: $regularsize auto;
   outline: none;
   overflow: hidden;
   padding: 0 10px;
@@ -42,13 +36,13 @@ input:focus, textarea:focus {
 }
 
 h3 {
-  font-family: "Roboto Slab", sans-serif;
+  font-family: $robotfont;
 }
 
 .input-fields {
   background-color: $offwhite;
   padding-top: 1px;
-  padding-bottom: 20px;
+  padding-bottom: $regularsize;
   text-align: center;
 }
 
@@ -60,18 +54,18 @@ h3 {
   font-size: 26px;
   height: 45px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: $regularsize;
   width: 55%;
 }
 
-.save-btn:hover, .sort-btn:hover, .show-completed-btn {
-  background-color: #045E55;
+.save-btn:hover, .sort-btn:hover, .show-completed-btn:hover, .complete-task:hover {
+  background-color: $forestgreen;
   cursor: pointer;
   outline: none;
 }
 
-.save-btn:focus, .sort-btn:focus, .show-completed-btn {
-  border: 2px solid #045E55;
+.save-btn:focus, .sort-btn:focus, .show-completed-btn:focus {
+  border: 2px solid $forestgreen;
   outline: none;
 }
 
@@ -93,30 +87,29 @@ h3 {
   padding-bottom: 10px;
   position: relative;
   width: 55%;
-
 }
 
 .quality, h3 {
   display: inline-block;
-  font-size: 20px;
+  font-size: $regularsize;
   margin: 0 2px;
-  margin-bottom: 20px;
+  margin-bottom: $regularsize;
 }
 
 .quality {
   font-family: $mainfont;
-  font-size: 20px;
+  font-size: $regularsize;
 }
 
 
 .idea-title, .quality {
   color: $offgrey;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: $robotfont;
 }
 
 .idea-title {
   font-size: 32px;
-  margin-bottom: 20px;
+  margin-bottom: $regularsize;
   outline: none;
 }
 
@@ -139,7 +132,19 @@ h3 {
   width: 40px;
 }
 
+.complete-task, .show-more {
+  background-color: lightgrey;
+  background-repeat: no-repeat;
+  border: none;
+  font-family: $mainfont;
+  font-size: 12px;
+  height: 40px;
+
+  width: 70%;
+}
+
 .up-vote, .down-vote {
+  margin-left: 15px;
   bottom: 35px;
   position: absolute;
 }
@@ -171,13 +176,6 @@ h3 {
   background: url(../images/delete-hover.svg);
 }
 
-.time-stamp {
-  bottom: 0;
-  color: lightgray;
-  font-size: 12px;
-  position: absolute;
-  right: 0;
-}
 
 .grey-background{
   background: lightgrey;
@@ -191,17 +189,11 @@ h3 {
 }
 
 .input-search, .sort-btn {
-  margin: 20px 5px;
+  margin: $regularsize 5px;
 }
 
 .input-search {
   width: 47%;
-}
-
-.sort-btn {
-  font-size: 20px;
-  height: 46px;
-  width: 50px;
 }
 
 ul li:nth-child(n+11) {
