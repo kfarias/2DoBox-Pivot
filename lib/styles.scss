@@ -1,5 +1,6 @@
 /* lib/styles.scss */
-@import "variables.scss"; 
+@import "variables.scss";
+@import "mediachanges.scss";
 
 header {
   background-color: $offwhite;
@@ -198,79 +199,4 @@ h3 {
 
 ul li:nth-child(n+11) {
     display:none;
-}
-
-@media screen and (max-width: 768px){
-  input, textarea {
-    width: 85%;
-  }
-
-  textarea {
-    height: 100px;
-  }
-
-  .save-btn {
-    width: 88%;
-  }
-
-  .idea-card {
-    width: 85%;
-  }
-
-
-    .input-search {
-      width: 77%;
-    }
-
-    .sort-btn {
-      font-size: 16px;
-      height: 46px;
-      width: 50px;
-    }
-}
-
-@media screen and (max-width: 420px){
-  header{
-    font-size: 42px;
-  }
-  input, textarea {
-    font-size: 24px;
-    height: 36px;
-    width: 80%;
-  }
-
-  textarea {
-    height: 100px;
-  }
-
-  article {
-    display: flex;
-  }
-
-  .save-btn {
-    width: 87%;
-  }
-
-  .idea-card {
-    width: 80%;
-  }
-
-  .idea-title {
-    font-size: 28px;
-  }
-
-  .idea-body, .quality, h3 {
-    font-size: 18px;
-  }
-
-
-    .input-search {
-      width: 60%;
-    }
-
-    .sort-btn {
-      width: 50px;
-      height: 40px;
-      font-size: 14px;
-    }
 }
