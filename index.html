@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>2DoBox</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
@@ -11,8 +11,8 @@
     <h1><span>2Do</span>Box</h1>
   </header>
     <section class="input-fields">
-      <input class="title-input" type="text" placeholder="Title">
-      <textarea maxlength='120' class="todo-input" type="text" placeholder="Task"></textarea>
+      <input aria-label="title" class="title-input" type="text" placeholder="Title">
+      <textarea aria-label="task" maxlength='120' class="todo-input" type="text" placeholder="Task"></textarea>
       <div class='result'><br></div>
       <button class="save-btn" type="button" disabled>save</button>
       <br>
@@ -20,7 +20,7 @@
     </section>
 
     <section class="search-sort-fields">
-      <input class="input-search" type="text" placeholder="Search">
+      <input aria-label="search-tasks" class="input-search" type="text" placeholder="Search">
     </section>
 
     <ul class="todo-container" id="dataset">
